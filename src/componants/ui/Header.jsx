@@ -8,7 +8,7 @@ import Navbar from "./Navbar";
 function Header() {
   return (
     <>
-      <section className="bg-black  max-w-[vh] max-h-[vh]  mx-auto text-white p-4">
+      <section className="bg-black  max-w-8xl  mx-auto text-white p-4">
         <header className="flex gap-10 items-center justify-between">
           <h1 className="  text-xl font-righteous tracking-normal  ml-10">
             prime video
