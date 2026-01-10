@@ -50,45 +50,52 @@ function MovieDetails() {
     );
   }
   return (
-    <div className="bg-black text-white min-h-screen">
-      {/* ================= HERO CONTENT ================= */}
-      <div className="max-w-7xl mx-auto px-6 pt-16">
-        <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-12 items-center">
-          {/* Poster */}
-          <img
-            src={movie.Poster}
-            alt={movie.Title}
-            className="w-[280px] md:w-[300px] h-[400px] rounded-2xl shadow-2xl ring-2 ring-gray-700 mx-auto md:mx-0"
-          />
+    <div className="bg-gradient-to-b from-black via-[#050505] to-black text-white min-h-screen">
+      {/* HERO SECTION */}
+      <div className="max-w-7xl mx-auto px-6 py-12 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-14 items-start">
+          {/* POSTER */}
+          <div className="relative mx-auto lg:mx-0">
+            <img
+              src={movie.Poster}
+              alt={movie.Title}
+              className="w-[300px] h-[450px] object-cover rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.8)]"
+            />
+            <div className="absolute inset-0 rounded-3xl ring-1 ring-white/10" />
+          </div>
 
-          {/* Text */}
-          <div>
-            <p className="text-whie text-xl font-semibold mb-2">
-              It's on{" "}
-              <span className="text-cyan-400 font-sarif">Amazon Prime</span>
+          {/* CONTENT */}
+          <div className="space-y-6">
+            {/* Platform */}
+            <p className="text-sm tracking-wide text-gray-400">
+              Now streaming on{" "}
+              <span className="text-cyan-400 font-semibold">Amazon Prime</span>
             </p>
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            {/* Title */}
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
               {movie.Title}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-3 text-sm text-gray-400 mb-5">
+            {/* Meta */}
+            <div className="flex flex-wrap items-center gap-3 text-sm text-gray-400">
               <span>{movie.Year}</span>
               <span>•</span>
               <span>{movie.Runtime}</span>
               <span>•</span>
               <span>{movie.Genre}</span>
-              <span className="border border-gray-600 px-2 rounded text-xs">
+              <span className="border border-gray-700 px-2 py-0.5 rounded text-xs">
                 {movie.Rated}
               </span>
             </div>
 
-            <p className="text-gray-300 leading-relaxed max-w-2xl mb-8 line-clamp-4">
+            {/* Plot */}
+            <p className="text-gray-300 leading-relaxed max-w-3xl line-clamp-2">
               {movie.Plot}
             </p>
 
-            {/* Meta Info */}
-            <div className="space-y-3 text-sm text-gray-300">
+            {/* Info Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 text-sm text-gray-300">
               <p>
                 <span className="text-gray-500">Director:</span>{" "}
                 {movie.Director}
@@ -106,33 +113,24 @@ function MovieDetails() {
               <p>
                 <span className="text-gray-500">Country:</span> {movie.Country}
               </p>
-
-              <div className="pt-6 flex items-center gap-3">
-                <span className="bg-yellow-200 text-black px-3 py-1 rounded font-semibold">
-                  ⭐ {movie.imdbRating}
-                </span>
-                <span className="text-gray-400 text-xs">
-                  {movie.imdbVotes} votes
-                </span>
-              </div>
             </div>
 
-            {/* rating system we want add */}
-            <div className="flex items-center gap-6 mt-8">
-              {/* Label */}
-             <span className="px-3 py-1 text-xs tracking-wide text-gray-300 border border-gray-700 rounded-full">
-  Rate this title
-</span>
+           
 
-              {/* Stars */}
-              <div className="flex items-center gap-1 bg-[#111] px-4 py-2 rounded-2xl border border-gray-800">
+            {/* USER RATING */}
+            <span className=" py-1 text-2xl tracking-wide text-gray-300">
+              Rate this movie 🤩
+            </span>
+
+            <div className="flex flex-wrap items-center gap-6 pt-6">
+              <div className="flex items-center gap-1 bg-[#0d0d0d] px-4 py-2 rounded-2xl border border-gray-800">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
                     key={star}
                     onClick={() => handleStarClick(star)}
                     onMouseEnter={() => setHoverRating(star)}
                     onMouseLeave={() => setHoverRating(0)}
-                    className="transition transform hover:scale-110"
+                    className="transition-transform hover:scale-125"
                   >
                     <span
                       className={`text-2xl ${
@@ -147,7 +145,6 @@ function MovieDetails() {
                 ))}
               </div>
 
-              {/* Rating Text */}
               {rating > 0 && (
                 <span className="text-sm text-gray-400">
                   You rated this{" "}
@@ -155,11 +152,19 @@ function MovieDetails() {
                 </span>
               )}
             </div>
+
+             {/* IMDb Rating */}
+            <div className="flex items-center gap-4 pt-4">
+              <div className="flex items-center gap-2 bg-yellow-300 text-black px-4 py-2 rounded-xl font-semibold">
+                ⭐ {movie.imdbRating}
+              </div>
+              <span className="text-xs text-gray-400">
+                {movie.imdbVotes} IMDb votes
+              </span>
+            </div>
           </div>
         </div>
       </div>
-
-     
     </div>
   );
 }
