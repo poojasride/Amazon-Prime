@@ -3,6 +3,7 @@ import omdb from "../api/omdb";
 
 const MovieRow = ({ title, keyword }) => {
   const [movies, setMovies] = useState([]);
+  const [details, setDetails] = useState({});
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -22,43 +23,90 @@ const MovieRow = ({ title, keyword }) => {
     fetchMovies();
   }, [keyword]);
 
+  // fetch once per movie (cached)
+  const fetchDetails = async (id) => {
+    if (details[id]) return;
+
+    const res = await omdb.get("", {
+      params: { i: id, plot: "short" },
+    });
+
+    setDetails((prev) => ({
+      ...prev,
+      [id]: res.data,
+    }));
+  };
+
   return (
-    <div className="mb-8">
+    <div className="mb-10">
       <h2 className="text-white text-xl font-semibold mb-3">{title}</h2>
 
-      <div className="flex space-x-4 overflow-x-scroll scrollbar-hide">
-        {movies.map((movie) => (
-          <div
-            key={movie.imdbID}
-            className="relative group min-w-[180px] cursor-pointer transform hover:scale-105 transition duration-300"
-          >
-            <img
-              src={
-                movie.Poster !== "N/A"
-                  ? movie.Poster
-                  : "https://via.placeholder.com/300x450"
-              }
-              alt={movie.Title}
-              className="rounded-lg object-cover w-full h-[260px] object-cover transform transition duration-300 group-hover:scale-110 "
-            />
-            <div
-              className="absolute inset-0 bg-black/80 text-white
-             opacity-0 group-hover:opacity-100
-             transition duration-300
-             rounded-lg p-3 flex flex-col justify-end"
-            >
-              <h3 className="text-sm font-bold">{movie.Title}</h3>
+      {/* WRAPPER FIX */}
+      <div className="relative">
+        <div className="flex space-x-4 scrollbar-hide pb-2"> 
+          {movies
+            .filter((m) => m.imdbID)
+            .map((movie) => (
+              <div
+                key={movie.imdbID}
+                className="relative min-w-[200px] group cursor-pointer overflow-visible"
+                onMouseEnter={() => fetchDetails(movie.imdbID)}
+              >
+                <div>
+                  {/* IMAGE */}
+                  <img
+                    src={
+                      movie.Poster !== "N/A"
+                        ? movie.Poster
+                        : "https://via.placeholder.com/300x450"
+                    }
+                    alt={movie.Title}
+                    className="w-full h-[260px] rounded-xl object-cover
+                             transition-transform duration-300
+                             group-hover:scale-105 group-hover:rounded-b-xs"
+                  />
 
-              <p className="text-xs text-gray-300">
-                {movie.Year} • {movie.Type}
-              </p>
+                  {details[movie.imdbID] && (
+                    <div
+                      className="
+      absolute left-1/2 
+      -translate-x-1/2 translate-y-6
+      w-[240px]
+      h-[140px]
+      bg-black text-white
+      rounded-xl
+      shadow-2xl
+      z-50
+      opacity-0 scale-90
+      group-hover:opacity-100
+      group-hover:scale-100
+      transition-all duration-300 ease-out
+    "
+                    >
+                      <div className="px-4">
+                        <h2 className="text-lg font-bold leading-tight line-clamp-1">
+                          {details[movie.imdbID].Title}
+                        </h2>
 
-              <button className="mt-2 bg-green-400 text-black text-xs px-3 py-1 rounded">
-                Watch Now
-              </button>
-            </div>
-          </div>
-        ))}
+                        <p className="text-xs text-white/70 mt-1">
+                          {details[movie.imdbID].Year} •{" "}
+                          {details[movie.imdbID].Runtime}
+                        </p>
+
+                        <p className="text-xs mt-2 text-white/70 line-clamp-2">
+                          {details[movie.imdbID].Plot}
+                        </p>
+
+                        <button className="mt-3 text-xs bg-white text-black px-3 py-1.5 rounded-full hover:bg-gray-200 transition">
+                          ▶ View Details
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );
