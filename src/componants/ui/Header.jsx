@@ -1,6 +1,4 @@
-import searchIcon from "../../assets/icons/search.svg";
 import dropDownIcon from "../../assets/icons/dropdown.svg";
-import nineDotsIcon from "../../assets/icons/nine-dots.svg";
 import profile from "../../assets/profile.png";
 import SearchModel from "../ui/SearchModel";
 import { useState } from "react";
@@ -23,7 +21,7 @@ function Header() {
             {/* SEARCH ICON */}
             <button
               onClick={() => setOpen(true)}
-              className="text-white hover:text-gray-300 transition"
+              className="text-white hover:text-gray-300 transition cursor-pointer"
             >
               <svg
                 className="w-6 h-6"
@@ -49,20 +47,18 @@ function Header() {
               />
             </button>
 
-          
-
             <img
               src={profile}
               alt="profile"
               className="w-10 h-10 cursor-pointer   rounded-full "
             />
 
-            <button className="hidden md:block bg-blue-500 rounded-md text-white font-medium p-2 px-4">
+            <button className="hidden md:block bg-blue-500 rounded-md text-white font-medium p-2 px-4 cursor-pointer hover:bg-blue-600 transition">
               Join Prime
             </button>
           </div>
         </header>
-         <SearchModel isOpen={open} onClose={() => setOpen(false)} />
+        <SearchModel isOpen={open} onClose={() => setOpen(false)} />
       </section>
     </>
   );

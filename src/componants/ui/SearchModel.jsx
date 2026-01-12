@@ -106,7 +106,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                     {movie.Title}
                   </h3>
                   <p className="text-xs text-gray-400">
-                    {movie.Year} • {movie.Type}
+                    {movie.Year} • {movie.Type} 
                   </p>
                 </div>
               </Link>
