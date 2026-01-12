@@ -11,7 +11,7 @@ function Header() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <section className="bg-black  max-w-8xl  mx-auto text-white p-4">
+      <section className="bg-black  max-w-8xl  sticky top-0 right-0 left-0 z-50 bg-black  mx-auto text-white p-4 ">
         <header className="flex gap-10 items-center justify-between">
           <h1 className="  text-xl font-righteous tracking-normal  ml-10">
             prime video
@@ -40,7 +40,7 @@ function Header() {
               </svg>
             </button>
 
-            <button className="cursor-pointer  hover:border border-white p-2 rounded-md">
+            <button className="cursor-pointer  e p-2 rounded-md">
               EN{" "}
               <img
                 src={dropDownIcon}
@@ -49,16 +49,12 @@ function Header() {
               />
             </button>
 
-            <img
-              src={nineDotsIcon}
-              alt=""
-              className="w-20 h-10 cursor-pointer  hover:border border-white p-2 rounded-md"
-            />
+          
 
             <img
               src={profile}
               alt="profile"
-              className="w-10 h-10 cursor-pointer  hover:border border-white  rounded-full hover:ring-2 hover:ring-white"
+              className="w-10 h-10 cursor-pointer   rounded-full "
             />
 
             <button className="hidden md:block bg-blue-500 rounded-md text-white font-medium p-2 px-4">

@@ -22,7 +22,7 @@ const MovieRow = ({ title, keyword, type }) => {
     };
 
     fetchMovies();
-  }, [keyword, type]); 
+  }, [keyword, type]);
 
   // fetch details once per imdbID
   const fetchDetails = async (id) => {
@@ -40,9 +40,7 @@ const MovieRow = ({ title, keyword, type }) => {
 
   return (
     <div className="mb-10">
-      <h2 className="text-white text-xl font-semibold mb-3">
-        {title}
-      </h2>
+      <h2 className="text-white text-xl font-semibold mb-3">{title}</h2>
 
       <div className="relative">
         <div className="flex space-x-4 scrollbar-hide pb-2">
@@ -50,22 +48,23 @@ const MovieRow = ({ title, keyword, type }) => {
             .filter((m) => m.imdbID)
             .map((movie, index) => (
               <div
-                key={`${movie.imdbID}-${index}`} 
-                className="relative min-w-[200px] group cursor-pointer overflow-visible"
+                key={`${movie.imdbID}-${index}`}
+                className="relative min-w-[200px] group cursor-pointer overflow-visible "
                 onMouseEnter={() => fetchDetails(movie.imdbID)}
               >
-                <img
-                  src={
-                    movie.Poster !== "N/A"
-                      ? movie.Poster
-                      : "https://via.placeholder.com/300x450"
-                  }
-                  alt={movie.Title}
-                  
-                  className="w-full h-[260px] rounded-xl object-cover
+                <Link to={`/movie-details/${movie.imdbID} `}>
+                  <img
+                    src={
+                      movie.Poster !== "N/A"
+                        ? movie.Poster
+                        : "https://via.placeholder.com/300x450"
+                    }
+                    alt={movie.Title}
+                    className="w-full h-[260px]  rounded-xl object-cover
                              transition-transform duration-300
                              group-hover:scale-105"
-                />
+                  />
+              </Link>
 
                 {details[movie.imdbID] && (
                   <div
