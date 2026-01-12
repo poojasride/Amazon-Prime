@@ -9,7 +9,7 @@ function Header() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <section className="bg-black  max-w-8xl  sticky top-0 right-0 left-0 z-50 bg-black  mx-auto text-white p-4 ">
+      <section className="bg-black  w-full  sticky top-0 right-0 left-0 z-50 bg-black  mx-auto text-white p-4 ">
         <header className="flex gap-10 items-center justify-between">
           <h1 className="  text-xl font-righteous tracking-normal  ml-10">
             prime video

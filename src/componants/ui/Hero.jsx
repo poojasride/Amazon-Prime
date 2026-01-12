@@ -4,7 +4,7 @@ import heroRight from "../../assets/heroRight.png";
 
 function Hero() {
   return (
-    <section  className="  max-w-[vh] max-h-[vh] mx-auto text-white p-4 ">
+    <section  className=" w-full mx-auto text-white p-4 ">
         
       <div  className="grid grid-cols-1 md:grid-cols-2 gap-4 ml-10  ">
        
