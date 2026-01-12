@@ -1,5 +1,5 @@
 import HeroLeft from "./HeroLeft";
-import heroRight from "../../assets/heroRight-1.jpg";
+import heroRight from "../../assets/heroRight.png";
 
 
 function Hero() {
