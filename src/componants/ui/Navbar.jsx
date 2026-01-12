@@ -13,14 +13,16 @@ function Navbar() {
           <Link to="/movies">Movies</Link>
         </li>
         <li className="hover:text-black hover:bg-white px-3 py-1 rounded-md">
-          Series
+          {/* Series */}
+          <Link to="/series">Series</Link>
         </li>
         <li className="hover:text-black hover:bg-white px-3 py-1 rounded-md">
-          Live Tv
+          {/* Episodes */}
+          <Link to="/episodes">Episodes</Link>
         </li>
 
         <span>|</span>
-        
+
         <li className=" flex items-center gap-1 hover:text-black hover:bg-white px-3 py-1 rounded-md">
           <svg
             xmlns="http://www.w3.org/2000/svg"

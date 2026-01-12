@@ -119,7 +119,7 @@ function MovieDetails() {
 
             {/* USER RATING */}
             <span className=" py-1 text-2xl tracking-wide text-gray-300">
-              Rate this movie 🤩
+              Rate on this 🤩
             </span>
 
             <div className="flex flex-wrap items-center gap-6 pt-6">

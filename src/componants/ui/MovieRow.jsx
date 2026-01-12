@@ -1,0 +1,113 @@
+import { useEffect, useState } from "react";
+import omdb from "../../api/omdb";
+import { Link } from "react-router-dom";
+
+const MovieRow = ({ title, keyword, type }) => {
+  const [movies, setMovies] = useState([]);
+  const [details, setDetails] = useState({});
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const res = await omdb.get("", {
+        params: {
+          s: keyword,
+          type: type,
+          page: 1,
+        },
+      });
+
+      if (res.data.Search) {
+        setMovies(res.data.Search);
+      }
+    };
+
+    fetchMovies();
+  }, [keyword, type]); 
+
+  // fetch details once per imdbID
+  const fetchDetails = async (id) => {
+    if (details[id]) return;
+
+    const res = await omdb.get("", {
+      params: { i: id, plot: "short" },
+    });
+
+    setDetails((prev) => ({
+      ...prev,
+      [id]: res.data,
+    }));
+  };
+
+  return (
+    <div className="mb-10">
+      <h2 className="text-white text-xl font-semibold mb-3">
+        {title}
+      </h2>
+
+      <div className="relative">
+        <div className="flex space-x-4 scrollbar-hide pb-2">
+          {movies
+            .filter((m) => m.imdbID)
+            .map((movie, index) => (
+              <div
+                key={`${movie.imdbID}-${index}`} 
+                className="relative min-w-[200px] group cursor-pointer overflow-visible"
+                onMouseEnter={() => fetchDetails(movie.imdbID)}
+              >
+                <img
+                  src={
+                    movie.Poster !== "N/A"
+                      ? movie.Poster
+                      : "https://via.placeholder.com/300x450"
+                  }
+                  alt={movie.Title}
+                  
+                  className="w-full h-[260px] rounded-xl object-cover
+                             transition-transform duration-300
+                             group-hover:scale-105"
+                />
+
+                {details[movie.imdbID] && (
+                  <div
+                    className="absolute left-1/2 -translate-x-1/2 translate-y-6
+                               w-[240px] h-[140px] bg-black text-white
+                               rounded-xl shadow-2xl z-50
+                               opacity-0 scale-90
+                               group-hover:opacity-100 group-hover:scale-100
+                               transition-all duration-300"
+                  >
+                    <div className="px-4 py-3">
+                      <h2 className="text-sm font-bold line-clamp-1">
+                        {details[movie.imdbID].Title}
+                      </h2>
+
+                      <p className="text-xs text-white/70 mt-1">
+                        {details[movie.imdbID].Year} •{" "}
+                        {details[movie.imdbID].Runtime}
+                      </p>
+
+                      <p className="text-xs mt-2 text-white/70 line-clamp-2">
+                        {details[movie.imdbID].Plot}
+                      </p>
+
+                      <Link
+                        to={`/movie-details/${movie.imdbID}`}
+                        className="inline-flex items-center gap-2 mt-3
+                                   text-xs bg-white text-black
+                                   px-3 py-1.5 rounded-full
+                                   hover:bg-gray-200 transition"
+                      >
+                        ▶ View Details
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MovieRow;
