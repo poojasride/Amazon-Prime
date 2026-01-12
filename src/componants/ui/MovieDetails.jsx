@@ -77,13 +77,13 @@ function MovieDetails() {
               {movie.Title}
             </h1>
 
-            {/* Meta */}
+            {/* Year and Runtime */}
             <div className="flex flex-wrap items-center gap-3 text-sm text-gray-400">
               <span>{movie.Year}</span>
               <span>•</span>
               <span>{movie.Runtime}</span>
               <span>•</span>
-              <span>{movie.Genre}</span>
+              <span className="text-gray-200">{movie.Genre}</span>
               <span className="border border-gray-700 px-2 py-0.5 rounded text-xs">
                 {movie.Rated}
               </span>
@@ -94,7 +94,7 @@ function MovieDetails() {
               {movie.Plot}
             </p>
 
-            {/* Info Grid */}
+            {/* Information of Movie */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 text-sm text-gray-300">
               <p>
                 <span className="text-gray-500">Director:</span>{" "}

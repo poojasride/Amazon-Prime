@@ -2,11 +2,29 @@ import MovieRow from "./ui/MovieRow";
 
 const Episodes = () => {
   const episodeCategories = [
-    { title: "Latest Episodes", keyword: "episode", key: 201, type: "episode" },
-    // { title: "Popular TV Episodes", keyword: "season", key: 202, type: "episode" },
-    // { title: "Drama Episodes", keyword: "drama", key: 203, type: "episode" },
-    // { title: "Crime Episodes", keyword: "crime", key: 204, type: "episode" },
-    // { title: "Mystery Episodes", keyword: "mystery", key: 205, type: "episode" },
+    {
+      title: "Adventure TV Series",
+      keyword: "adventure",
+      key: 205,
+      type: "series",
+    },
+    { title: "Top Rated TV Shows", keyword: "top", key: 201, type: "series" },
+
+    {
+      title: "Hollywood TV Series",
+      keyword: "hollywood",
+      key: 201,
+      type: "series",
+    },
+
+    {
+      title: "English Language Series",
+      keyword: "english",
+      key: 201,
+      type: "series",
+    },
+
+    { title: "Drama TV Series", keyword: "drama", key: 201, type: "series" },
   ];
 
   return (
@@ -17,7 +35,6 @@ const Episodes = () => {
           title={category.title}
           keyword={category.keyword}
           type={category.type}
-        
         />
       ))}
     </div>

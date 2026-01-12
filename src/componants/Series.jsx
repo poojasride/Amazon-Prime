@@ -3,9 +3,9 @@ import MovieRow from "./ui/MovieRow";
 const Series = () => {
   const seriesCategories = [
     { title: "Popular TV Series", keyword: "series", key: 101, type: "series" },
-    { title: "Crime & Thriller Shows", keyword: "crime", key: 102, type: "series" },
+    { title: "Crime & Thriller Series", keyword: "crime", key: 102, type: "series" },
     { title: "Mystery & Adventure Series", keyword: "mystery", key: 103, type: "series" },
-    { title: "Drama TV Shows", keyword: "drama", key: 104, type: "series" },
+    { title: "Drama TV Series", keyword: "drama", key: 104, type: "series" },
     { title: "Comedy Series", keyword: "comedy", key: 105, type: "series" },
   ];
 
