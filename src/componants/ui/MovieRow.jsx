@@ -48,7 +48,7 @@ const MovieRow = ({ title, keyword, type }) => {
             .filter((m) => m.imdbID)
             .map((movie, index) => (
               <div
-                key={`${movie.imdbID}-${index}`}
+                key={`${movie.imdbID}`}
                 className="relative min-w-[200px] group cursor-pointer overflow-visible "
                 onMouseEnter={() => fetchDetails(movie.imdbID)}
               >

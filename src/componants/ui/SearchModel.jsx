@@ -38,7 +38,7 @@ const SearchModal = ({ isOpen, onClose }) => {
       } finally {
         setLoading(false);
       }
-    }, 500); // debounce delay
+    }, 500); // for  delay
 
     return () => clearTimeout(timer);
   }, [query]);
